@@ -1,0 +1,10 @@
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div *ngFor="let movie of movies" class="swiper-slide text-white text-center">
+
+            <img *ngIf="movie.poster_path" class="img-thumbnail" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" [alt]="movie.title">
+            <img *ngIf="!movie.poster_path" class="img-thumbnail" src="./assets/img/no-image.jpg" [alt]="movie.title">
+            <p> {{movie.title}}</p>
+        </div>
+    </div>
+</div>
