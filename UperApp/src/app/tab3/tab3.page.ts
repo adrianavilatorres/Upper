@@ -12,12 +12,13 @@ import { DataLocalService } from '../services/data-local.service';
 export class Tab3Page implements OnInit {
 
   peliculas: PeliculaDetalle[] = [];
+  videos: any[] = [];
 
   constructor( private dataLocalService: DataLocalService, private modalCtrl: ModalController ) {}
 
 
   async ngOnInit() {
-    this.peliculas = await this.dataLocalService.cargarFavoritos();
+    this.videos = await this.dataLocalService.cargarFavoritos();
   }
 
   async verDetalle( id: string ){

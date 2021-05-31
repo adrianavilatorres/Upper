@@ -2,10 +2,4 @@
     <ion-slide *ngFor="let video of videosFromCategory">
         <img (click)="verDetalle( video.id )" class="poster" [src]="video.coverPage | imagen">
     </ion-slide>
-
-    <ion-slide class="mas2">
-        <ion-button expand="full" size="large" (click)="onclick()">
-            <ion-icon class="mas" name="add"></ion-icon>
-        </ion-button>
-    </ion-slide>
 </ion-slides>
