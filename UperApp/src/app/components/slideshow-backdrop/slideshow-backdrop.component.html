@@ -1,8 +1,8 @@
 <ion-slides [options]="slideOpts">
-    <ion-slide *ngFor="let pelicula of peliculas">
-        <ion-card color="dark" (click)="verDetalle( pelicula.id )">
-            <img [src]="pelicula.backdrop_path | imagen" (click)="verDetalle( pelicula.id )">
-            <h3>{{pelicula.title}}</h3>
+    <ion-slide *ngFor="let video of videos">
+        <ion-card color="dark" (click)="verDetalle( video.id )">
+            <img [src]="video.coverPage " (click)="verDetalle( video.id )">
+            <h3>{{video.title}}</h3>
         </ion-card>
 
     </ion-slide>

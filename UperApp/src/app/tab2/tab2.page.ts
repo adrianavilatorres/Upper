@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { DetalleComponent } from '../components/detalle/detalle.component';
 import { Pelicula } from '../Interfaces/interfaces';
 import { MoviesService } from '../services/movies.service';
+import { FirebaseService } from '../services/firebase.service';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-tab2',
@@ -13,10 +15,29 @@ export class Tab2Page {
 
   textoBuscar = '';
   peliculas: Pelicula[] = [];
-  ideas: string[] = ['Spiderman', 'Los vengadores', 'El señor de los anillos', 'Star wars'];
+  videos: any[] = [];
+  ideas: string[] = ['Pecho, Abdominales, Espalda, Triceps'];
   buscando = false;
 
-  constructor( private movieService: MoviesService, private modalCtrl: ModalController ) {}
+  constructor( private movieService: MoviesService, private modalCtrl: ModalController, private fireSerice: FirebaseService ) {}
+
+
+  buscarVideos( event ){
+    const valor: string = event.detail.value;
+
+    if(valor.length === 0){
+      this.buscando = false;
+      this.videos =  [];
+      return;
+    }
+
+    this.buscando = true;
+    this.fireSerice.getVideoSearch(valor).then( resp => {
+      console.log(resp);
+      this.videos = resp;
+      this.buscando = false;
+    } );
+  };
 
   buscar( event ){
     const valor: string = event.detail.value;

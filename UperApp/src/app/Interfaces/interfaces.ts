@@ -5,6 +5,14 @@ export interface RespuestaMDB {
   total_results: number;
 }
 
+export interface Video{
+  id:string,
+  title: string,
+  coverPage: string,
+  videoUrl: string,
+  category: string
+}
+
 export interface Pelicula {
   adult: boolean;
   backdrop_path: string;

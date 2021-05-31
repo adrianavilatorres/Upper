@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Pelicula } from 'src/app/Interfaces/interfaces';
+import { Pelicula, Video } from 'src/app/Interfaces/interfaces';
 import { DetalleComponent } from '../detalle/detalle.component';
 
 @Component({
@@ -11,6 +11,7 @@ import { DetalleComponent } from '../detalle/detalle.component';
 export class SlideshowBackdropComponent implements OnInit {
 
   @Input() peliculas: Pelicula[] = [];
+  @Input() videos: Video[] = [];
 
   slideOpts = {
     slidesPerView: 1.1,

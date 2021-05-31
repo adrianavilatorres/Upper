@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { Cast, PeliculaDetalle } from 'src/app/Interfaces/interfaces';
 import { DataLocalService } from 'src/app/services/data-local.service';
 import { MoviesService } from 'src/app/services/movies.service';
+import { FirebaseService } from '../../services/firebase.service';
+import { Video } from '../../Interfaces/interfaces';
 
 @Component({
   selector: 'app-detalle',
@@ -11,8 +13,9 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class DetalleComponent implements OnInit {
 
-  @Input() id;
+  @Input() id: any;
   pelicula: PeliculaDetalle = {};
+  video: any[] = [];
   actores: Cast [] = [];
 
   texto = 150;
@@ -27,25 +30,46 @@ export class DetalleComponent implements OnInit {
     spacebetween: -5
   };
 
-  constructor( private movieService: MoviesService, private modalCtrl: ModalController, private dataLocal: DataLocalService ) { }
+  constructor( private movieService: MoviesService,private fireService: FirebaseService, private modalCtrl: ModalController, private dataLocal: DataLocalService ) {
+    
+
+    
+   }
 
   ngOnInit() {
-
     this.dataLocal.existePelicula( this.id ).then( existe => this.estrella = (existe) ? 'star': 'star-outline');
 
+    this.getVideoDetail(this.id)
 
+    // this.movieService.getMovieDetalle(this.id).subscribe( resp => {
+    //   console.log( resp );
+    //   this.pelicula = resp;
+    // } );
 
-
-    this.movieService.getMovieDetalle(this.id).subscribe( resp => {
-      console.log( resp );
-      this.pelicula = resp;
-    } );
-
-    this.movieService.getCreditsMovie(this.id).subscribe( resp => {
-      console.log( resp );
-      this.actores = resp.cast;
-    } );
+    // this.movieService.getCreditsMovie(this.id).subscribe( resp => {
+    //   console.log( resp );
+    //   this.actores = resp.cast;
+    // } );
   }
+
+
+   getVideoDetail(id: string){
+    this.fireService.getVideo(id).then((resp: any[]) => {
+      
+      this.video = resp
+      console.log(resp);
+      
+      
+      
+      
+    })
+    
+    
+    
+    
+  }
+
+  
 
   mostrarMas(){
   this.masBolean = !this.masBolean;

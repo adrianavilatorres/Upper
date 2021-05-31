@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-toolbar color="dark">
-    <ion-searchbar color="dark" placeholder="Buscar película" animated debounce="700" [value]="textoBuscar" (ionChange)="buscar( $event )">
+    <ion-searchbar color="dark" placeholder="Buscar película" animated debounce="700" [value]="textoBuscar" (ionChange)="buscarVideos( $event )">
     </ion-searchbar>
 </ion-toolbar>
 
@@ -34,18 +34,18 @@
 
     <ion-grid fixed color="dark">
         <ion-row color="dark">
-            <ion-col color="dark" size="6" *ngFor="let pelicula of peliculas">
-                <ion-card color="dark" (click)="verDetalle( pelicula.id )">
-                    <img [src]="pelicula.poster_path | imagen">
+            <ion-col color="dark" size="6" *ngFor="let video of videos">
+                <ion-card color="dark" (click)="verDetalle( video.id.toString())">
+                    <img [src]="video.coverPage | imagen">
 
-                    <ion-card-header color="dark">
+                    <!-- <ion-card-header color="dark">
                         <ion-card-subtitle color="dark">
                             {{pelicula.release_date}}
                         </ion-card-subtitle>
-                    </ion-card-header>
+                    </ion-card-header> -->
 
                     <ion-card-content color="dark">
-                        <h2>{{pelicula.title}}</h2>
+                        <h2>{{video.title}}</h2>
                     </ion-card-content>
                 </ion-card>
             </ion-col>

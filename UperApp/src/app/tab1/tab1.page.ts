@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pelicula } from '../Interfaces/interfaces';
 import { MoviesService } from '../services/movies.service';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-tab1',
@@ -10,16 +11,30 @@ import { MoviesService } from '../services/movies.service';
 export class Tab1Page implements OnInit{
 
   peliculasRecientes: Pelicula[] = [];
+  videosRecientes: any[] = [];
+  videosFromCategory: any[] = [];
+
+  
 
   populares: Pelicula[] = [];
 
 
 
-  constructor(private movieService: MoviesService) {}
+  constructor(private movieService: MoviesService, private fireService: FirebaseService) {
+    console.log('dataaaa');
+    
+    
+    
+    
+    
+  }
 
 
   ngOnInit(): void {
 
+    
+    this.getVideos();
+    
 
     this.movieService.getFeature().subscribe( resp => {
 
@@ -27,8 +42,20 @@ export class Tab1Page implements OnInit{
 
     } );
 
-    this.getPopulares();
+    //sthis.getPopulares();
   }
+
+  getVideos(){
+    this.fireService.getVideos().then((resp: any[]) => {
+      
+      
+      this.videosRecientes = resp
+    })
+    
+    
+  }
+
+  
 
   cargarMas(){
     this.getPopulares();

@@ -3,34 +3,34 @@
     <ion-grid fixed>
         <ion-row>
             <ion-col>
-                <h3>Peliculas Nuevas</h3>
+                <h3>Videos populares</h3>
             </ion-col>
         </ion-row>
     </ion-grid>
 
 
 
-    <app-slideshow-backdrop [peliculas]="peliculasRecientes"></app-slideshow-backdrop>
+    <app-slideshow-backdrop [videos]="videosRecientes"></app-slideshow-backdrop>
 
     <ion-grid fixed>
         <ion-row>
             <ion-col>
-                <h3>Cartelera</h3>
+                <h3>Abdominales</h3>
             </ion-col>
         </ion-row>
     </ion-grid>
 
-    <app-slideshow-poster-simple [peliculas]="peliculasRecientes"></app-slideshow-poster-simple>
+    <app-slideshow-poster-simple [videosFromCategory]="videosFromCategory"></app-slideshow-poster-simple>
 
     <ion-grid fixed>
         <ion-row>
             <ion-col>
-                <h3>Populares</h3>
+                <h3>Pecho</h3>
             </ion-col>
         </ion-row>
     </ion-grid>
 
-    <app-slideshow-poster [peliculas]="populares" (cargarMas)="cargarMas()"></app-slideshow-poster>
+    <app-slideshow-poster [videos]="videosRecientes" (cargarMas)="cargarMas()"></app-slideshow-poster>
 
 
 </ion-content>

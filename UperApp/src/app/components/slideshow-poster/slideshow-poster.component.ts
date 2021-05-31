@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Pelicula } from 'src/app/Interfaces/interfaces';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { DetalleComponent } from '../detalle/detalle.component';
 
 @Component({
@@ -12,6 +13,10 @@ export class SlideshowPosterComponent implements OnInit {
 
 
   @Input() peliculas: Pelicula[] = [];
+  @Input() videos: any[] = [];
+  @Input() videosFromCategory: any[] = [];
+  category: string = 'pecho';
+
   @Output() cargarMas = new EventEmitter();
 
   slideOpts = {
@@ -20,9 +25,19 @@ export class SlideshowPosterComponent implements OnInit {
   };
 
 
-  constructor( private modalCtrl: ModalController ) { }
+  constructor( private modalCtrl: ModalController ,private fireService: FirebaseService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getVideosFromCategory(this.category);
+  }
+
+
+
+  getVideosFromCategory(category: string){
+    this.fireService.getVideosFromCategory(category).then( (resp: any[]) => {
+      this.videosFromCategory = resp;
+    });
+  }
 
   onclick(){
     this.cargarMas.emit();
