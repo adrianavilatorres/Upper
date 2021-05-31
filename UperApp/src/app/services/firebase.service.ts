@@ -147,7 +147,15 @@ export class FirebaseService {
           querySnapshot.forEach((doc) => {
               console.log(doc.data());
 
-              if(true){
+              var regex: RegExp = new RegExp(`^(${text.toLowerCase()})`);
+
+
+              console.log(doc.data().title);
+              console.log(text);
+              
+              
+
+              if(doc.data().title.toLowerCase().match(regex) || doc.data().category.toLowerCase().match(regex)){
                 lista.push(doc.data())
               }
               
